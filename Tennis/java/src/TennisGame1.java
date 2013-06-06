@@ -73,36 +73,19 @@ public class TennisGame1 implements TennisGame {
     }
 
     private String getAdvantageOrWinScore() {
-        String score;
+        String score = "";
         String betterPlayer = "player1";
         if (player1Score < player2Score)
         {
             betterPlayer = "player2";
         }
 
-        int minusResult = player1Score-player2Score;
+        int scoreDifference = Math.abs(player1Score-player2Score);
 
-//        switch(minusResult)
-//        {
-//            case 1:
-//                score ="Advantage player1";
-//                break;
-//            case -1:
-//                score ="Advantage player2";
-//                break;
-//            case 2:
-//                score ="Advantage player1";
-//                break;
-
-
-        if (Math.abs(minusResult) == 1)
+       if (scoreDifference == 1)
             score ="Advantage " + betterPlayer;
-     //   else if (minusResult ==-1)
-       //     score ="Advantage " + betterPlayer;
-        else if (minusResult>=2)
-            score = "Win for player1";
-        else
-            score ="Win for player2";
+         else if (scoreDifference > 1)
+            score ="Win for "  + betterPlayer;
 
         return score;
     }
