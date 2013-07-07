@@ -1,12 +1,9 @@
-
 public class TennisGame1 implements TennisGame {
-    
-    private int player1Score = 0;
-    private int player2Score = 0;
+
+    private int m_score1 = 0;
+    private int m_score2 = 0;
     private String player1Name;
     private String player2Name;
-
-
 
     public TennisGame1(String player1Name, String player2Name) {
         this.player1Name = player1Name;
@@ -15,101 +12,66 @@ public class TennisGame1 implements TennisGame {
 
     public void wonPoint(String playerName) {
         if (playerName == "player1")
-            player1Score += 1;
+            m_score1 += 1;
         else
-            player2Score += 1;
+            m_score2 += 1;
     }
 
     public String getScore() {
         String score = "";
         int tempScore=0;
-        if (isScoreEqual())
+        if (m_score1==m_score2)
         {
-            score = getEqualScores(player1Score);
+            switch (m_score1)
+            {
+                case 0:
+                    score = "Love-All";
+                    break;
+                case 1:
+                    score = "Fifteen-All";
+                    break;
+                case 2:
+                    score = "Thirty-All";
+                    break;
+                case 3:
+                    score = "Forty-All";
+                    break;
+                default:
+                    score = "Deuce";
+                    break;
+
+            }
         }
-        else if (isEndGame())
+        else if (m_score1>=4 || m_score2>=4)
         {
-            score = getAdvantageOrWinScore();
+            int minusResult = m_score1-m_score2;
+            if (minusResult==1) score ="Advantage player1";
+            else if (minusResult ==-1) score ="Advantage player2";
+            else if (minusResult>=2) score = "Win for player1";
+            else score ="Win for player2";
         }
         else
         {
-            score = getRegularPlayScores(score);
-        }
-        return score;
-    }
-
-    private String getRegularPlayScores(String score) {
-        score = appendToScore(score, player1Score);
-        score += "-";
-        score = appendToScore(score, player2Score);
-        return score;
-    }
-
-    private boolean isEndGame() {
-        return player1Score>=4 || player2Score>=4;
-    }
-
-    private boolean isScoreEqual() {
-        return player1Score==player2Score;
-    }
-
-    private String appendToScore(String score, int tempScore) {
-        switch(tempScore)
-        {
-            case 0:
-                score+="Love";
-                break;
-            case 1:
-                score+="Fifteen";
-                break;
-            case 2:
-                score+="Thirty";
-                break;
-            case 3:
-                score+="Forty";
-                break;
-        }
-        return score;
-    }
-
-    private String getAdvantageOrWinScore() {
-        String score = "";
-        String betterPlayer = "player1";
-        if (player1Score < player2Score)
-        {
-            betterPlayer = "player2";
-        }
-
-        int scoreDifference = Math.abs(player1Score-player2Score);
-
-       if (scoreDifference == 1)
-            score ="Advantage " + betterPlayer;
-         else if (scoreDifference > 1)
-            score ="Win for "  + betterPlayer;
-
-        return score;
-    }
-
-    private String getEqualScores(int temp) {
-        String score;
-        switch (temp)
-        {
-            case 0:
-                    score = "Love-All";
-                break;
-            case 1:
-                    score = "Fifteen-All";
-                break;
-            case 2:
-                    score = "Thirty-All";
-                break;
-            case 3:
-                    score = "Forty-All";
-                break;
-            default:
-                    score = "Deuce";
-                break;
-
+            for (int i=1; i<3; i++)
+            {
+                if (i==1) tempScore = m_score1;
+                else { score+="-"; tempScore = m_score2;}
+                switch(tempScore)
+                {
+                    case 0:
+                        score+="Love";
+                        break;
+                    case 1:
+                        score+="Fifteen";
+                        break;
+                    case 2:
+                        score+="Thirty";
+                        break;
+                    case 3:
+                        score+="Forty";
+                        break;
+                }
+            }
         }
         return score;
     }
