@@ -2,6 +2,17 @@ public class TennisGame1 implements TennisGame {
 
     private int player1Score = 0;
     private int player2Score = 0;
+
+    @Override
+    public String getPlayer1Name() {
+        return player1Name;
+    }
+
+    @Override
+    public String getPlayer2Name() {
+        return player2Name;
+    }
+
     private String player1Name;
     private String player2Name;
 
@@ -11,7 +22,7 @@ public class TennisGame1 implements TennisGame {
     }
 
     public void wonPoint(String playerName) {
-        if (playerName == "player1")
+        if (playerName.equals(player1Name))
             player1Score += 1;
         else
             player2Score += 1;

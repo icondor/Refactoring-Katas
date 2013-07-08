@@ -6,6 +6,15 @@ public class TennisGame2 implements TennisGame
     
     public String P1res = "";
     public String P2res = "";
+
+    public String getPlayer1Name() {
+        return player1Name;
+    }
+
+    public String getPlayer2Name() {
+        return player2Name;
+    }
+
     private String player1Name;
     private String player2Name;
 
@@ -101,7 +110,7 @@ public class TennisGame2 implements TennisGame
         }
         return score;
     }
-    
+
 //    public void SetP1Score(int number){
 //
 //        for (int i = 0; i < number; i++)
