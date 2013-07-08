@@ -31,7 +31,11 @@ public class TennisGame1 implements TennisGame {
     public String getScore() {
         String score = "";
         if (player1Score == player2Score) {
-            score = getScoreStringWhenEquals();
+            if(player1Score == 4) {
+                score = "Deuce";
+            } else {
+                score = getScoreStringWhenEquals();
+            }
         } else if (player1Score >= 4 || player2Score >= 4) {
             score = getScoreEligibleForWin();
         } else {
@@ -83,25 +87,7 @@ public class TennisGame1 implements TennisGame {
     }
 
     private String getScoreStringWhenEquals() {
-        String score;
-        switch (player1Score) {
-            case 0:
-                score = "Love-All";
-                break;
-            case 1:
-                score = "Fifteen-All";
-                break;
-            case 2:
-                score = "Thirty-All";
-                break;
-            case 3:
-                score = "Forty-All";
-                break;
-            default:
-                score = "Deuce";
-                break;
-
-        }
+        String score = getScoreName(player1Score) + "-All";
         return score;
     }
 
