@@ -35,7 +35,7 @@ public class TennisGame1 implements TennisGame {
         } else if (isEligibleForWin()) {
             score = getScoreEligibleForWin();
         } else {
-            score = getScoreOtherwise(score);
+            score = getIntermediateScore(score);
         }
         return score;
     }
@@ -48,16 +48,9 @@ public class TennisGame1 implements TennisGame {
         return player1Score == player2Score;
     }
 
-    private String getScoreOtherwise(String score) {
-        int tempScore;
-        for (int i = 1; i < 3; i++) {
-            if (i == 1) tempScore = player1Score;
-            else {
-                score += "-";
-                tempScore = player2Score;
-            }
-            score += getScoreName(tempScore);
-        }
+    private String getIntermediateScore(String score) {
+        score += getScoreName(player1Score) + "-" + getScoreName(player2Score);
+
         return score;
     }
 
