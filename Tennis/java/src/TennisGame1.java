@@ -29,7 +29,7 @@ public class TennisGame1 implements TennisGame {
     }
 
     public String getScore() {
-        String score = "";
+        String score;
         if (isEqualScore()) {
             score = getScoreStringWhenEquals();
         } else if (isEligibleForWin()) {
@@ -75,14 +75,16 @@ public class TennisGame1 implements TennisGame {
         String score;
         int deltaScore = player1Score - player2Score;
 
-        if (deltaScore == 1) {
-            score = "Advantage player1";
-        } else if (deltaScore == -1) {
-            score = "Advantage player2";
-        } else if (deltaScore >= 2) {
-            score = "Win for player1";
+        if(Math.abs(deltaScore) == 1){
+            score = "Advantage";
         } else {
-            score = "Win for player2";
+            score = "Win for";
+        }
+
+        if(deltaScore > 0){
+            score+=" player1";
+        } else {
+            score+=" player2";
         }
 
         return score;
