@@ -75,18 +75,28 @@ public class TennisGame1 implements TennisGame {
         String score;
         int deltaScore = player1Score - player2Score;
 
+        score = getScoreType(deltaScore) + getLeadingPlayer(deltaScore);
+
+        return score;
+    }
+
+    private String getLeadingPlayer(int deltaScore) {
+        String player;
+        if(deltaScore > 0){
+            player =" player1";
+        } else {
+            player =" player2";
+        }
+        return player;
+    }
+
+    private String getScoreType(int deltaScore) {
+        String score;
         if(Math.abs(deltaScore) == 1){
             score = "Advantage";
         } else {
             score = "Win for";
         }
-
-        if(deltaScore > 0){
-            score+=" player1";
-        } else {
-            score+=" player2";
-        }
-
         return score;
     }
 
