@@ -1,7 +1,14 @@
 public class TennisGame1 implements TennisGame {
+    private String player1Name;
+    private String player2Name;
 
     private int player1Score = 0;
     private int player2Score = 0;
+
+    public TennisGame1(String player1Name, String player2Name) {
+        this.player1Name = player1Name;
+        this.player2Name = player2Name;
+    }
 
     @Override
     public String getPlayer1Name() {
@@ -13,23 +20,19 @@ public class TennisGame1 implements TennisGame {
         return player2Name;
     }
 
-    private String player1Name;
-    private String player2Name;
-
-    public TennisGame1(String player1Name, String player2Name) {
-        this.player1Name = player1Name;
-        this.player2Name = player2Name;
-    }
-
+    @Override
     public void wonPoint(String playerName) {
-        if (playerName.equals(player1Name))
-            player1Score += 1;
-        else if (playerName.equals(player2Name))
-            player2Score += 1;
+        if (playerName.equals(player1Name)) {
+            player1Score++;
+        } else if (playerName.equals(player2Name)) {
+            player2Score++;
+        }
     }
 
+    @Override
     public String getScore() {
         String score;
+
         if (isEqualScore()) {
             score = getScoreStringWhenEquals();
         } else if (isEligibleForWin()) {
@@ -37,6 +40,7 @@ public class TennisGame1 implements TennisGame {
         } else {
             score = getIntermediateScore();
         }
+
         return score;
     }
 
@@ -52,8 +56,10 @@ public class TennisGame1 implements TennisGame {
         return getScoreName(player1Score) + "-" + getScoreName(player2Score);
     }
 
+
     private String getScoreName(int score) {
         String scoreName = "";
+
         switch (score) {
             case 0:
                 scoreName = "Love";
@@ -68,46 +74,52 @@ public class TennisGame1 implements TennisGame {
                 scoreName = "Forty";
                 break;
         }
+
         return scoreName;
     }
 
     private String getScoreEligibleForWin() {
-        String score;
         int deltaScore = player1Score - player2Score;
 
-        score = getScoreType(deltaScore) + getLeadingPlayer(deltaScore);
+        String score = getScoreType(deltaScore) + " " + getLeadingPlayer(deltaScore);
 
-        return score;
-    }
-
-    private String getLeadingPlayer(int deltaScore) {
-        String player;
-        if(deltaScore > 0){
-            player =" player1";
-        } else {
-            player =" player2";
-        }
-        return player;
-    }
-
-    private String getScoreType(int deltaScore) {
-        String score;
-        if(Math.abs(deltaScore) == 1){
-            score = "Advantage";
-        } else {
-            score = "Win for";
-        }
         return score;
     }
 
     private String getScoreStringWhenEquals() {
         String score;
+
         if (player1Score == 4) {
             score = "Deuce";
         } else {
             score = getScoreName(player1Score) + "-All";
         }
+
         return score;
+    }
+
+    private String getScoreType(int deltaScore) {
+        String scoreType;
+
+        if (Math.abs(deltaScore) == 1) {
+            scoreType = "Advantage";
+        } else {
+            scoreType = "Win for";
+        }
+
+        return scoreType;
+    }
+
+    private String getLeadingPlayer(int deltaScore) {
+        String player;
+
+        if (deltaScore > 0) {
+            player = "player1";
+        } else {
+            player = "player2";
+        }
+
+        return player;
     }
 
 

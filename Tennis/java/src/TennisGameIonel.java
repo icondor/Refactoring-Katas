@@ -28,19 +28,15 @@ public class TennisGameIonel implements TennisGame {
 
     public String getScore() {
         String score = "";
-        int tempScore=0;
-        if (isScoreEqual())
-        {
+
+        if (isScoreEqual()) {
             score = getEqualScores(player1Score);
-        }
-        else if (isEndGame())
-        {
+        } else if (isEndGame()) {
             score = getAdvantageOrWinScore();
-        }
-        else
-        {
+        } else {
             score = getRegularPlayScores(score);
         }
+
         return score;
     }
 
@@ -52,27 +48,26 @@ public class TennisGameIonel implements TennisGame {
     }
 
     private boolean isEndGame() {
-        return player1Score>=4 || player2Score>=4;
+        return player1Score >= 4 || player2Score >= 4;
     }
 
     private boolean isScoreEqual() {
-        return player1Score==player2Score;
+        return player1Score == player2Score;
     }
 
     private String appendToScore(String score, int tempScore) {
-        switch(tempScore)
-        {
+        switch (tempScore) {
             case 0:
-                score+="Love";
+                score += "Love";
                 break;
             case 1:
-                score+="Fifteen";
+                score += "Fifteen";
                 break;
             case 2:
-                score+="Thirty";
+                score += "Thirty";
                 break;
             case 3:
-                score+="Forty";
+                score += "Forty";
                 break;
         }
         return score;
@@ -81,39 +76,37 @@ public class TennisGameIonel implements TennisGame {
     private String getAdvantageOrWinScore() {
         String score = "";
         String betterPlayer = "player1";
-        if (player1Score < player2Score)
-        {
+        if (player1Score < player2Score) {
             betterPlayer = "player2";
         }
 
-        int scoreDifference = Math.abs(player1Score-player2Score);
+        int scoreDifference = Math.abs(player1Score - player2Score);
 
-       if (scoreDifference == 1)
-            score ="Advantage " + betterPlayer;
-         else if (scoreDifference > 1)
-            score ="Win for "  + betterPlayer;
+        if (scoreDifference == 1)
+            score = "Advantage " + betterPlayer;
+        else if (scoreDifference > 1)
+            score = "Win for " + betterPlayer;
 
         return score;
     }
 
     private String getEqualScores(int temp) {
         String score;
-        switch (temp)
-        {
+        switch (temp) {
             case 0:
-                    score = "Love-All";
+                score = "Love-All";
                 break;
             case 1:
-                    score = "Fifteen-All";
+                score = "Fifteen-All";
                 break;
             case 2:
-                    score = "Thirty-All";
+                score = "Thirty-All";
                 break;
             case 3:
-                    score = "Forty-All";
+                score = "Forty-All";
                 break;
             default:
-                    score = "Deuce";
+                score = "Deuce";
                 break;
 
         }
