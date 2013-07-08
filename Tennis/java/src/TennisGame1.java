@@ -48,22 +48,28 @@ public class TennisGame1 implements TennisGame {
                 score += "-";
                 tempScore = player2Score;
             }
-            switch (tempScore) {
-                case 0:
-                    score += "Love";
-                    break;
-                case 1:
-                    score += "Fifteen";
-                    break;
-                case 2:
-                    score += "Thirty";
-                    break;
-                case 3:
-                    score += "Forty";
-                    break;
-            }
+            score += getScoreName(tempScore);
         }
         return score;
+    }
+
+    private String getScoreName(int score) {
+        String scoreName = "";
+        switch (score) {
+            case 0:
+                scoreName = "Love";
+                break;
+            case 1:
+                scoreName = "Fifteen";
+                break;
+            case 2:
+                scoreName = "Thirty";
+                break;
+            case 3:
+                scoreName = "Forty";
+                break;
+        }
+        return scoreName;
     }
 
     private String getScoreEligibleForWin() {
