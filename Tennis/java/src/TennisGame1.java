@@ -36,7 +36,7 @@ public class TennisGame1 implements TennisGame {
         if (isEqualScore()) {
             score = getScoreStringWhenEquals();
         } else if (isEligibleForWin()) {
-            score = getScoreEligibleForWin();
+            score = getScoreRepresentationEligibleForWin();
         } else {
             score = getIntermediateScore();
         }
@@ -55,7 +55,6 @@ public class TennisGame1 implements TennisGame {
     private String getIntermediateScore() {
         return getScoreName(player1Score) + "-" + getScoreName(player2Score);
     }
-
 
     private String getScoreName(int score) {
         String scoreName = "";
@@ -78,12 +77,13 @@ public class TennisGame1 implements TennisGame {
         return scoreName;
     }
 
-    private String getScoreEligibleForWin() {
+
+    private String getScoreRepresentationEligibleForWin() {
         int deltaScore = player1Score - player2Score;
 
-        String score = getScoreType(deltaScore) + " " + getLeadingPlayer(deltaScore);
+        String scoreRepresentation = getScoreType(deltaScore) + " " + getLeadingPlayer(deltaScore);
 
-        return score;
+        return scoreRepresentation;
     }
 
     private String getScoreStringWhenEquals() {
