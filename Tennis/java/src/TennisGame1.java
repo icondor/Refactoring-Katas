@@ -31,11 +31,7 @@ public class TennisGame1 implements TennisGame {
     public String getScore() {
         String score = "";
         if (player1Score == player2Score) {
-            if(player1Score == 4) {
-                score = "Deuce";
-            } else {
-                score = getScoreStringWhenEquals();
-            }
+            score = getScoreStringWhenEquals();
         } else if (player1Score >= 4 || player2Score >= 4) {
             score = getScoreEligibleForWin();
         } else {
@@ -87,7 +83,12 @@ public class TennisGame1 implements TennisGame {
     }
 
     private String getScoreStringWhenEquals() {
-        String score = getScoreName(player1Score) + "-All";
+        String score;
+        if(player1Score == 4) {
+            score = "Deuce";
+        } else {
+            score = getScoreName(player1Score) + "-All";
+        }
         return score;
     }
 
