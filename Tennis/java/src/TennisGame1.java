@@ -83,16 +83,23 @@ public class TennisGame1 implements TennisGame {
     private String getScoreEligibleForWin() {
         String score;
         int deltaScore = player1Score - player2Score;
-        if (deltaScore == 1) score = "Advantage player1";
-        else if (deltaScore == -1) score = "Advantage player2";
-        else if (deltaScore >= 2) score = "Win for player1";
-        else score = "Win for player2";
+
+        if (deltaScore == 1) {
+            score = "Advantage player1";
+        } else if (deltaScore == -1) {
+            score = "Advantage player2";
+        } else if (deltaScore >= 2) {
+            score = "Win for player1";
+        } else {
+            score = "Win for player2";
+        }
+
         return score;
     }
 
     private String getScoreStringWhenEquals() {
         String score;
-        if(player1Score == 4) {
+        if (player1Score == 4) {
             score = "Deuce";
         } else {
             score = getScoreName(player1Score) + "-All";
