@@ -30,14 +30,22 @@ public class TennisGame1 implements TennisGame {
 
     public String getScore() {
         String score = "";
-        if (player1Score == player2Score) {
+        if (isEqualScore()) {
             score = getScoreStringWhenEquals();
-        } else if (player1Score >= 4 || player2Score >= 4) {
+        } else if (isEligibleForWin()) {
             score = getScoreEligibleForWin();
         } else {
             score = getScoreOtherwise(score);
         }
         return score;
+    }
+
+    private boolean isEligibleForWin() {
+        return player1Score >= 4 || player2Score >= 4;
+    }
+
+    private boolean isEqualScore() {
+        return player1Score == player2Score;
     }
 
     private String getScoreOtherwise(String score) {
